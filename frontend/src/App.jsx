@@ -6,11 +6,10 @@ function App() {
         <>
             <div>
                 <Navbar />
-                <div className="flex flex-col p-10 bg-blue-800 text-white">
-                    <h1 className="flex m-4">Homepage</h1>
-                    <div>
-                        <p>Alla kort</p>
-                    </div>
+                <div className="flex flex-col p-10 bg-stone-500 text-white min-h-screen">
+                    <h1 className="flex m-4 text-xl justify-center">
+                        Explore smultron
+                    </h1>
                 </div>
             </div>
         </>
