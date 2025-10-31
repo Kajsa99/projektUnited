@@ -1,25 +1,7 @@
-const dotenv = require('dotenv');
-const express = require('express');
-const cors = require('cors');
-const { Client } = require('pg');
-const path = require('path');
-
-dotenv.config();
-
-const app = express();
-const PORT = process.env.PORT || 3000;
-
-app.use(cors());
-app.use(express.json());
-
-const client = new Client({
-  connectionString: process.env.PGURI,
-});
-
-client.connect();
+const client = require('../db/client');
 
 // CREATE
-app.post('/api/smultron', async (req, res) => {
+exports.createSmultron = async (req, res) => {
   const { title, description, location, image_url, user_id } = req.body;
 
   if (!title || !image_url || !user_id) {
@@ -38,10 +20,10 @@ app.post('/api/smultron', async (req, res) => {
     console.error('Insertion error:', err);
     res.status(500).json({ error: 'internal Server Error' });
   }
-});
+};
 
 // READ
-app.get('/api/smultron', async (req, res) => {
+exports.getSmultron = async (req, res) => {
   try {
     const result = await client.query(`
         SELECT s.id, s.title, s.description, s.location, s.image_url, s.created_at, u.username 
@@ -54,10 +36,10 @@ app.get('/api/smultron', async (req, res) => {
     console.error('Fetching error:', err);
     res.status(500).json({ error: 'internal Server Error' });
   }
-});
+};
 
 // UPDATE
-app.put('/api/smultron/:id', async (req, res) => {
+exports.updateSmultron = async (req, res) => {
   const { id } = req.params;
   const { title, description, location, image_url, user_id } = req.body;
 
@@ -87,10 +69,10 @@ app.put('/api/smultron/:id', async (req, res) => {
     console.error('Update error:', err);
     res.status(500).json({ error: 'Internal Server Error' });
   }
-});
+};
 
 // DELETE
-app.delete('/api/smultron/:id', async (req, res) => {
+exports.deleteSmultron = async (req, res) => {
   const { id } = req.params;
 
   try {
@@ -108,14 +90,4 @@ app.delete('/api/smultron/:id', async (req, res) => {
     console.error('Deletion error:', err);
     res.status(500).json({ error: 'Internal Server Error' });
   }
-});
-
-app.use(express.static(path.join(__dirname, 'dist')));
-
-app.get(/.*/, (req, res) => {
-  res.sendFile(path.join(__dirname, 'dist', 'index.html'));
-});
-
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
-});
+};
