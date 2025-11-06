@@ -6,6 +6,8 @@ import New from "./pages/new.jsx";
 import Profiles from "./pages/profiles.jsx";
 import ProfileDetail from "./pages/profiledetail.jsx";
 import Settings from "./pages/settings.jsx";
+import Login from "./pages/login.jsx";
+import Signup from "./pages/signup.jsx";
 import { Footer } from "../components/footer.jsx";
 
 function App() {
@@ -20,6 +22,8 @@ function App() {
                 <Route path="/profile" element={<Profiles />} />
                 <Route path="/profile/:id" element={<ProfileDetail />} />
                 <Route path="/settings" element={<Settings />} />
+                <Route path="/login" element={<Login />} />
+                <Route path="/signup" element={<Signup />} />
             </Routes>
             <Footer />
         </div>
