@@ -1,4 +1,4 @@
-import { SmultronCard } from "../../components/smultroncard.jsx";
+import { SmultronCard } from "../../components/SmultronCard.jsx";
 
 export default function Home() {
     return (

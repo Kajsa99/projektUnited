@@ -1,9 +1,11 @@
+import { Link } from "react-router-dom";
+
 export function Navbar() {
     const tabs = [
-        { label: "EXPLORE", href: "/" },
-        { label: "ADD NEW", href: "/new" },
-        { label: "PROFILE", href: "/profile" },
-        { label: "SETTINGS", href: "/settings" },
+        { label: "EXPLORE", to: "/" },
+        { label: "ADD NEW", to: "/new" },
+        { label: "PROFILE", to: "/profile" },
+        { label: "SETTINGS", to: "/settings" },
     ];
 
     return (
@@ -18,13 +20,13 @@ export function Navbar() {
             </h2>
             <div className="flex items-end justify-center gap-2">
                 {tabs.map((t) => (
-                    <a
-                        key={t.href}
-                        href={t.href}
+                    <Link
+                        key={t.to}
+                        to={t.to}
                         className="px-10 py-2 rounded-t-lg bg-stone-500 text-white hover:bg-stone-300"
                     >
                         {t.label}
-                    </a>
+                    </Link>
                 ))}
             </div>
         </nav>
