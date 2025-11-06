@@ -6,6 +6,7 @@ import New from "./pages/new.jsx";
 import Profiles from "./pages/profiles.jsx";
 import ProfileDetail from "./pages/profiledetail.jsx";
 import Settings from "./pages/settings.jsx";
+import { Footer } from "../components/footer.jsx";
 
 function App() {
     console.log(" App component rendered");
@@ -20,6 +21,7 @@ function App() {
                 <Route path="/profile/:id" element={<ProfileDetail />} />
                 <Route path="/settings" element={<Settings />} />
             </Routes>
+            <Footer />
         </div>
     );
 }
