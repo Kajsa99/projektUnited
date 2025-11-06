@@ -4,20 +4,52 @@ const client = new Client ({
 });
 client.connect();
 
-// CREATE
-exports.createUser = async (req, res) => {
-  const { username, email, personnummer } = req.body;
+// token
+const jwt = require("jsonwebtoken");
+const bcrypt = require("bcrypt");
 
-  if (!username || !email || !personnummer) {
-    return res.status(400).json({ error: 'missing required fields' });
-}
+const JWT_SECRET = process.env.JWT_SECRET;
+const JWT_EXPIRY = process.env.JWT_EXPIRY || '7d';
+
+//login user
+exports.loginUser = async (req, res) => {
+  const { username, password } = req.body;
+  if (!username || !password) return res.status(400).json({ error: "Missing credentials" });
 
   try {
+    const result = await client.query(`SELECT * FROM users WHERE username=$1`, [username]);
+    const user = result.rows[0];
+    if (!user) return res.status(401).json({ error: "Invalid credentials" });
+
+    const match = await bcrypt.compare(password, user.password);
+    if (!match) return res.status(401).json({ error: "Invalid credentials" });
+
+    const token = jwt.sign({ userId: user.id }, JWT_SECRET, { expiresIn: JWT_EXPIRY });
+    res.json({ token, username: user.username, id: user.id });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+};
+
+
+// CREATE
+exports.createUser = async (req, res) => {
+  const { username, password, email } = req.body;
+
+  if (!username || !password || !email) {
+    return res.status(400).json({ error: 'missing required fields' });
+  }
+
+  try {
+    // hash the password
+    const hashedPassword = await bcrypt.hash(password, 10);
+
     const result = await client.query(
-      `INSERT INTO users (username, email, personnummer) 
-      VALUES ($1, $2, $3) 
-      RETURNING *`,
-      [username, email, personnummer]
+      `INSERT INTO users (username, password, email) 
+       VALUES ($1, $2, $3) 
+       RETURNING *`,
+      [username, hashedPassword, email]
     );
     res.status(201).json(result.rows[0]);
   } catch (err) {
@@ -58,9 +90,9 @@ exports.getUserById = async (req, res) => {
 // UPDATE
 exports.updateUser = async (req, res) => {
   const { id } = req.params;
-  const { username, email, personnummer } = req.body;
+  const { username, password, email } = req.body;
 
-  if (!username || !email || !personnummer) {
+  if (!username || !password || !email) {
     return res.status(400).json({ error: 'missing required fields' });
   }
 
@@ -68,11 +100,11 @@ exports.updateUser = async (req, res) => {
     const result = await client.query(
       `UPDATE users
        SET username = $1,
-           email = $2,
-           personnummer = $3
+           password = $2,
+           email = $3
        WHERE id = $4
        RETURNING *`,
-      [username, email, personnummer, id]
+      [username, password, email, id]
     );
 
     if (result.rowCount === 0) {
