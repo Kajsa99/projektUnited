@@ -3,7 +3,6 @@ import { Navbar } from "../components/navbar.jsx";
 import { Routes, Route } from "react-router-dom";
 import Home from "./pages/Home.jsx";
 import New from "./pages/new.jsx";
-import Profiles from "./pages/Profiles.jsx";
 import ProfileDetail from "./pages/ProfileDetail.jsx";
 import Login from "./pages/login.jsx";
 import Signup from "./pages/signup.jsx";
@@ -18,7 +17,6 @@ function App() {
             <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/new" element={<New />} />
-                <Route path="/profile" element={<Profiles />} />
                 <Route path="/profile/:id" element={<ProfileDetail />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/signup" element={<Signup />} />
