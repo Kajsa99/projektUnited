@@ -33,6 +33,35 @@ export default function ProfileDetail() {
         if (updatedUser.username)
             localStorage.setItem("username", updatedUser.username);
     };
+    const handleDelete = async () => {
+        // confirm deletion
+        const ok = window.confirm(
+            "Are you sure you want to permanently delete your account? This cannot be undone."
+        );
+        if (!ok) return;
+
+        const token = localStorage.getItem("token");
+        const userId = localStorage.getItem("userId");
+        try {
+            const res = await fetch(`/api/users/${userId}`, {
+                method: "DELETE",
+                headers: { Authorization: `Bearer ${token}` },
+            });
+            if (!res.ok) {
+                const json = await res.json().catch(() => ({}));
+                alert(json.error || "Failed to delete account");
+                return;
+            }
+            // remove from local storage
+            localStorage.removeItem("token");
+            localStorage.removeItem("userId");
+            localStorage.removeItem("username");
+            navigate("/signup");
+        } catch (err) {
+            console.error(err);
+            alert("Network error when deleting account");
+        }
+    };
 
     return (
         <div className="bg-stone-500 min-h-screen flex flex-col items-center p-10 gap-4">
@@ -47,6 +76,12 @@ export default function ProfileDetail() {
                             className="bg-blue-500 text-white px-4 py-2 rounded mt-4"
                         >
                             Update info
+                        </button>
+                        <button
+                            onClick={handleDelete}
+                            className="bg-red-600 text-white px-4 py-2 rounded"
+                        >
+                            Delete account
                         </button>
                     </div>
                 </>
