@@ -5,7 +5,7 @@ export default function UpdateUserForm({ user, onUpdate }) {
     const [formData, setFormData] = useState({
         username: user.username || "",
         email: user.email || "",
-        password: user.password || "",
+        password: "",
     });
     const [error, setError] = useState("");
 
@@ -72,11 +72,10 @@ export default function UpdateUserForm({ user, onUpdate }) {
             <input
                 type="text"
                 name="password"
-                placeholder="password"
+                placeholder="New password"
                 value={formData.password}
                 onChange={handleChange}
                 className="p-2 rounded bg-stone-700 text-white"
-                required
             />
             <button
                 type="submit"
