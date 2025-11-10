@@ -27,12 +27,12 @@ export function Navbar() {
     ];
 
     return (
-        <nav className="text-white pt-4 px-4 bg-stone-400 flex flex-col">
-            <h2 className="text-2xl flex items-center">
+        <nav className="text-white pt-4 px-4 bg-lime-50 flex flex-col">
+            <h2 className="text-2xl flex items-center text-lime-800">
                 <img
                     src="/strawberry.png"
                     alt="strawberry"
-                    className="w-6 h-6 mr-2"
+                    className="w-10 h-10 mr-2"
                 />
                 SmultronStällen
             </h2>
@@ -41,7 +41,7 @@ export function Navbar() {
                     <a
                         key={t.href}
                         href={t.href}
-                        className="px-10 py-2 rounded-t-lg bg-stone-500 text-white hover:bg-stone-300"
+                        className="px-10 py-2 rounded-t-lg bg-lime-900 text-lime-50 hover:bg-lime-600"
                     >
                         {t.label}
                     </a>
@@ -50,12 +50,12 @@ export function Navbar() {
             <div className="absolute top-2 right-4 flex items-center gap-3 m-4">
                 {user ? (
                     <>
-                        <p className="text-md">
+                        <p className="text-md text-rose-400">
                             Howdy, <strong>{user.username}!</strong>
                         </p>
                         <button
                             onClick={Logout}
-                            className="text-md bg-stone-700 px-5 pt-2 pb-3 rounded-2xl hover:bg-stone-600"
+                            className="text-md bg-rose-400 text-rose-900 px-5 pt-2 pb-3 rounded-2xl hover:text-rose-900 hover:bg-rose-200"
                         >
                             Logout
                         </button>
@@ -63,7 +63,7 @@ export function Navbar() {
                 ) : (
                     <a
                         to="/login"
-                        className="text-md bg-stone-700 p-3 rounded-2xl hover:bg-stone-600"
+                        className="bg-rose-400 text-rose-900 text-md p-3 rounded-2xl hover:text-white"
                     >
                         Login
                     </a>

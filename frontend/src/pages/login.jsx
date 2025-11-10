@@ -23,11 +23,11 @@ export default function Login() {
     };
 
     return (
-        <div className="min-h-screen flex flex-col justify-center items-center">
+        <div className="min-h-screen flex flex-col justify-center items-center bg-lime-900 text-white p-10">
             {!user ? (
                 <LoginForm onLogin={handleLogin} />
             ) : (
-                <p className="text-center text-stone-400">
+                <p className="text-center text-lime-800">
                     Welcome, {user.username}!
                 </p>
             )}

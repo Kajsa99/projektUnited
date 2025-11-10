@@ -48,7 +48,7 @@ export default function UpdateUserForm({ user, onUpdate }) {
     return (
         <form
             onSubmit={handleSubmit}
-            className="flex flex-col max-w-sm mx-auto gap-4 p-10 bg-stone-500 text-white rounded-lg"
+            className="flex flex-col max-w-sm mx-auto gap-4 p-10 bg-lime-50 text-lime-900 rounded-lg"
         >
             <h1 className="text-xl mb-4 text-center">Update User Info</h1>
             <input
@@ -57,7 +57,7 @@ export default function UpdateUserForm({ user, onUpdate }) {
                 placeholder="Username"
                 value={formData.username}
                 onChange={handleChange}
-                className="p-2 rounded bg-stone-700 text-white"
+                className="p-2 rounded bg-rose-300 text-white"
                 required
             />
             <input
@@ -66,7 +66,7 @@ export default function UpdateUserForm({ user, onUpdate }) {
                 placeholder="Email"
                 value={formData.email}
                 onChange={handleChange}
-                className="p-2 rounded bg-stone-700 text-white"
+                className="p-2 rounded bg-rose-300 text-white"
                 required
             />
             <input
@@ -75,11 +75,11 @@ export default function UpdateUserForm({ user, onUpdate }) {
                 placeholder="New password"
                 value={formData.password}
                 onChange={handleChange}
-                className="p-2 rounded bg-stone-700 text-white"
+                className="p-2 rounded bg-rose-300 text-white"
             />
             <button
                 type="submit"
-                className="bg-blue-500 text-white px-4 py-2 rounded mt-4"
+                className="bg-rose-400 text-rose-800 px-4 py-2 rounded mt-4 hover:bg-rose-200 hover:text-red-900"
             >
                 Update
             </button>
