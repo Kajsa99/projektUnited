@@ -18,66 +18,69 @@ export default function SignUpForm({ onSubmit }) {
     };
 
     return (
-        <div className="flex flex-col p-10 bg-stone-500 text-white min-h-screen">
-            <h1 className="flex m-4 text-xl justify-center">Signup</h1>
-            <p className="flex m-4 text-center justify-center">
-                Please enter your credentials.
-            </p>
+        <div className="flex flex-col p-10 bg-lime-900 text-white min-h-screen">
+            <div className="rounded-lg bg-lime-200 text-rose-400 p-6 max-w-md mx-auto">
+                <h1 className="flex m-4 text-xl justify-center">Signup</h1>
+                <p className="flex m-4 text-center justify-center">
+                    Please enter your credentials.
+                </p>
 
-            <form
-                onSubmit={handleSubmit}
-                className="flex flex-col max-w-sm mx-auto gap-4"
-            >
-                <label className="flex flex-col">
-                    Username:
-                    <input
-                        type="text"
-                        name="username"
-                        value={formData.username}
-                        onChange={handleChange}
-                        className="mt-1 p-2 rounded bg-stone-700 text-white"
-                        required
-                    />
-                </label>
-                <label className="flex flex-col">
-                    Password:
-                    <input
-                        type="password"
-                        name="password"
-                        value={formData.password}
-                        onChange={handleChange}
-                        className="mt-1 p-2 rounded bg-stone-700 text-white"
-                        required
-                    />
-                </label>
-                <label className="flex flex-col">
-                    Email:
-                    <input
-                        type="email"
-                        name="email"
-                        value={formData.email}
-                        onChange={handleChange}
-                        className="mt-1 p-2 rounded bg-stone-700 text-white"
-                        required
-                    />
-                </label>
-                <label className="flex items-center">
-                    <input
-                        type="checkbox"
-                        name="terms"
-                        required
-                        className="mr-2 text-sm"
-                    />
-                    I consent to the processing and storage of my personal data
-                    for the purpose of accessing and using this website's
-                    services. I consent that my data will be retained for as
-                    long as I choose to maintain my account, and I can withdraw
-                    my consent at any time.
-                </label>
-                <button className="bg-stone-800 rounded-xl text-white p-2 mt-4">
-                    Signup
-                </button>
-            </form>
+                <form
+                    onSubmit={handleSubmit}
+                    className="flex flex-col max-w-sm mx-auto gap-4"
+                >
+                    <label className="flex flex-col">
+                        Username:
+                        <input
+                            type="text"
+                            name="username"
+                            value={formData.username}
+                            onChange={handleChange}
+                            className="mt-1 p-2 rounded bg-rose-400 text-white"
+                            required
+                        />
+                    </label>
+                    <label className="flex flex-col">
+                        Password:
+                        <input
+                            type="password"
+                            name="password"
+                            value={formData.password}
+                            onChange={handleChange}
+                            className="mt-1 p-2 rounded bg-rose-400 text-white"
+                            required
+                        />
+                    </label>
+                    <label className="flex flex-col">
+                        Email:
+                        <input
+                            type="email"
+                            name="email"
+                            value={formData.email}
+                            onChange={handleChange}
+                            className="mt-1 p-2 rounded bg-rose-400 text-white"
+                            required
+                        />
+                    </label>
+                    <label className="flex items-center">
+                        <input
+                            type="checkbox"
+                            name="terms"
+                            required
+                            className="mr-2 text-sm"
+                        />
+                        I consent to the processing and storage of my personal
+                        data for the purpose of accessing and using this
+                        website's services. I consent that my data will be
+                        retained for as long as I choose to maintain my account,
+                        and I can withdraw my consent at any time.
+                    </label>
+
+                    <button className="bg-rose-400 text-rose-900 rounded-xl p-2 mt-4 hover:text-white">
+                        Signup
+                    </button>
+                </form>
+            </div>
         </div>
     );
 }

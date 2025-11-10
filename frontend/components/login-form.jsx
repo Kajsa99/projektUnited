@@ -50,9 +50,8 @@ export default function LoginForm({ onLogin }) {
     return (
         <form
             onSubmit={handleSubmit}
-            className="flex flex-col max-w-sm mx-auto gap-4 p-10 bg-stone-500 text-white rounded-lg"
+            className="flex flex-col max-w-sm mx-auto gap-4 p-10 bg-lime-200 text-white rounded-lg"
         >
-            <h1 className="text-xl mb-4 text-center">Login</h1>
             <input
                 type="text"
                 name="username"
@@ -71,11 +70,19 @@ export default function LoginForm({ onLogin }) {
                 className="p-2 rounded bg-stone-700 text-white"
                 required
             />
-            <button type="submit" className="bg-stone-800 rounded-xl p-2 mt-4">
+            <button
+                type="submit"
+                className="bg-rose-400 text-rose-900 rounded-xl p-2 mt-4"
+            >
                 Login
             </button>
             {error && <p className="text-red-400 mt-2 text-center">{error}</p>}
-            <Link to="/signup">No account? Sign up here.</Link>
+            <Link
+                to="/signup"
+                className="text-rose-400 underline text-center mt-4"
+            >
+                No account? Sign up here.
+            </Link>
         </form>
     );
 }

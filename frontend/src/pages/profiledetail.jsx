@@ -64,10 +64,10 @@ export default function ProfileDetail() {
     };
 
     return (
-        <div className="bg-stone-500 min-h-screen flex flex-col items-center p-10 gap-4">
+        <div className="bg-lime-900 min-h-screen flex flex-col items-center p-10 gap-4">
             {!showForm ? (
                 <>
-                    <div className="flex justify-center flex-col items-center bg-white max-w-300 rounded-lg p-4">
+                    <div className="flex justify-center flex-col items-center bg-lime-50 min-w-70 max-w-300 rounded-lg p-4">
                         <img
                             src="/user.png"
                             alt="profile picture"
@@ -78,25 +78,25 @@ export default function ProfileDetail() {
                         <div className="flex flex-row items-baseline gap-4">
                             <button
                                 onClick={() => setShowForm(true)}
-                                className="bg-sky-800 text-white px-4 py-2 rounded mt-4 hover:bg-sky-600"
+                                className="bg-rose-400 text-rose-800 px-4 py-2 rounded mt-4 hover:bg-rose-200"
                             >
                                 Update info
                             </button>
-                            <button
-                                onClick={handleDelete}
-                                className="bg-rose-900 text-white px-4 py-2 rounded m-2 hover:bg-rose-700"
-                            >
-                                Delete account
-                            </button>
                         </div>
                     </div>
+                    <button
+                        onClick={handleDelete}
+                        className="bg-rose-900 text-rose-100 px-4 py-2 rounded m-2 hover:bg-rose-700"
+                    >
+                        Delete account
+                    </button>
                 </>
             ) : (
                 <div>
                     <UpdateUserForm user={user} onUpdate={handleUpdate} />
                     <button
                         onClick={() => setShowForm(false)}
-                        className="mt-4 text-sm text-gray-200 underline"
+                        className="mt-4 text-sm text-rose-200 underline"
                     >
                         Cancel
                     </button>
