@@ -36,7 +36,7 @@ export default function ProfileDetail() {
     const handleDelete = async () => {
         // confirm deletion
         const ok = window.confirm(
-            "Are you sure you want to permanently delete your account? This cannot be undone."
+            "Are you sure you want to permanently delete your account?"
         );
         if (!ok) return;
 
@@ -68,21 +68,27 @@ export default function ProfileDetail() {
             {!showForm ? (
                 <>
                     <div className="flex justify-center flex-col items-center bg-white max-w-300 rounded-lg p-4">
+                        <img
+                            src="/user.png"
+                            alt="profile picture"
+                            className="w-20 h-20 object-cover rounded-full mb-4"
+                        />
                         <h1 className="text-2xl mb-2">{user.username}</h1>
-                        <p>{user.email}</p>
-
-                        <button
-                            onClick={() => setShowForm(true)}
-                            className="bg-blue-500 text-white px-4 py-2 rounded mt-4"
-                        >
-                            Update info
-                        </button>
-                        <button
-                            onClick={handleDelete}
-                            className="bg-red-600 text-white px-4 py-2 rounded"
-                        >
-                            Delete account
-                        </button>
+                        <p>Email: {user.email}</p>
+                        <div className="flex flex-row items-baseline gap-4">
+                            <button
+                                onClick={() => setShowForm(true)}
+                                className="bg-sky-800 text-white px-4 py-2 rounded mt-4 hover:bg-sky-600"
+                            >
+                                Update info
+                            </button>
+                            <button
+                                onClick={handleDelete}
+                                className="bg-rose-900 text-white px-4 py-2 rounded m-2 hover:bg-rose-700"
+                            >
+                                Delete account
+                            </button>
+                        </div>
                     </div>
                 </>
             ) : (
