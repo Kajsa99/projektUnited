@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 
 export function SmultronCard() {
     const [cards, setCards] = useState([]);
@@ -15,8 +16,16 @@ export function SmultronCard() {
                 <li key={s.id}>
                     <div className="max-w-sm rounded-lg bg-lime-50 my-4 px-6 py-6 ">
                         <h2 className="text-xl text-lime-900">{s.user_id}</h2>
-                        <div className="bg-stone-200 max-w-sm h-48 rounded-md mb-4 flex items-center justify-center text-stone-500">
-                            {s.image_url}
+                        <div className="bg-rose-50 max-w-sm h-48 rounded-md mb-4 flex items-center justify-center text-rose-200">
+                            {s.image_url ? (
+                                <LazyLoadImage
+                                    src={s.image_url}
+                                    alt={s.title || "Smultron image"}
+                                    className="w-full h-48 object-cover rounded-md"
+                                />
+                            ) : (
+                                <span className="text-sm">No image</span>
+                            )}
                         </div>
                         <div className="flex justify-between items-baseline mb-2">
                             <h3 className="text-lg text-lime-900">{s.title}</h3>
