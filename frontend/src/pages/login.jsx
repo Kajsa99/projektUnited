@@ -18,6 +18,7 @@ export default function Login() {
         setUser(userData);
         localStorage.setItem("token", userData.token);
         localStorage.setItem("username", userData.username);
+        localStorage.setItem("userId", String(user.id));
         console.log("Logged in user:", userData);
         navigate(`/profile/${userData.id}`);
     };

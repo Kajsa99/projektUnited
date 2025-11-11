@@ -29,7 +29,7 @@ export default function Signup() {
       setMessage("Something went wrong");
     }
   };
-
+  
   return (
     <div>
       <SignUpForm onSubmit={handleSignUp} />
