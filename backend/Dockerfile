@@ -1,13 +1,6 @@
-FROM node:latest
-
-WORKDIR /app
-
+FROM node
 COPY . .
-
-RUN cd frontend && npm install && npm run build
-
+WORKDIR /app
 RUN npm install
-
 EXPOSE 3000
-
-CMD ["node", "index.js"]
+ENTRYPOINT ["node", "index.js"]
