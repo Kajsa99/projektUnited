@@ -13,7 +13,7 @@ services:
     environment:
       - POSTGRES_PASSWORD=secret
       - POSTGRES_DB=smultronstallen
-      - POSTRES_USER=
+      - POSTGRES_USER=postgres
     healthcheck:
       test: "pg_isready --username=postgres"
       interval: 5s
