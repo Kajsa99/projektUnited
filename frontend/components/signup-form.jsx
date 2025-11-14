@@ -69,11 +69,7 @@ export default function SignUpForm({ onSubmit }) {
                             required
                             className="mr-2 text-sm"
                         />
-                        I consent to the processing and storage of my personal
-                        data for the purpose of accessing and using this
-                        website's services. I consent that my data will be
-                        retained for as long as I choose to maintain my account,
-                        and I can withdraw my consent at any time.
+                        I agree to the terms and conditions
                     </label>
 
                     <button className="bg-rose-400 text-rose-900 rounded-xl p-2 mt-4 hover:text-white">
