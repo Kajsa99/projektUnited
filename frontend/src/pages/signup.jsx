@@ -8,7 +8,7 @@ export default function Signup() {
 
   const handleSignUp = async (formData) => {
     try {
-      const res = await fetch("http://localhost:3000/api/users", {
+      const res = await fetch("http://4.210.254.154:3000/api/users", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -29,7 +29,7 @@ export default function Signup() {
       setMessage("Something went wrong");
     }
   };
-  
+
   return (
     <div>
       <SignUpForm onSubmit={handleSignUp} />
