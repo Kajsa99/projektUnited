@@ -10,7 +10,7 @@ services:
       database:
         condition: service_healthy
     environment:
-      - PGURI=postgres://postgres:secret@database:5432/smultronstallen
+      - PGURI=postgres://postgres:secret@database:5433/smultronstallen
     ports:
       - "3000:3000"
   database:
