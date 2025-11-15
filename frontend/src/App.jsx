@@ -1,9 +1,9 @@
 import "./App.css";
 import { Navbar } from "../components/navbar.jsx";
 import { Routes, Route } from "react-router-dom";
-import Home from "./pages/Home.jsx";
+import Home from "./pages/home.jsx";
 import New from "./pages/new.jsx";
-import ProfileDetail from "./pages/ProfileDetail.jsx";
+import ProfileDetail from "./pages/profiledetail.jsx";
 import Login from "./pages/login.jsx";
 import Signup from "./pages/signup.jsx";
 import { Footer } from "../components/footer.jsx";
