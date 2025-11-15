@@ -22,7 +22,7 @@ export function AddSmultronForm() {
     };
 
     try {
-      await fetch("http:4.210.254.154:3000/api/smultron", {
+      await fetch("http://4.210.254.154:3000/api/smultron", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(newSmultron),
