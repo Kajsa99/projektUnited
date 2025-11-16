@@ -9,9 +9,9 @@ services:
     depends_on:
       database:
         condition: service_healthy
-    env_file:
-      - ./backend/.env
     environment:
+      - JWT_SECRET=byt_en_stark_hemlighet_här
+      - JWT_EXPIRY=7d
       - PGURI=postgres://postgres:secret@database:5432/smultronstallen
     ports:
       - "3000:3000"
