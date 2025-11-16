@@ -10,6 +10,8 @@ services:
       database:
         condition: service_healthy
     environment:
+      - JWT_SECRET=byt_en_stark_hemlighet_här
+      - JWT_EXPIRY=7d
       - PGURI=postgres://postgres:secret@database:5432/smultronstallen
     ports:
       - "3000:3000"

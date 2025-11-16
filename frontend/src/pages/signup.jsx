@@ -3,8 +3,8 @@ import { useNavigate } from "react-router-dom";
 import SignUpForm from "../../components/signup-form";
 
 export default function Signup() {
-  const [message, setMessage] = useState("");
-  const navigate = useNavigate();
+    const [message, setMessage] = useState("");
+    const navigate = useNavigate();
 
   const handleSignUp = async (formData) => {
     try {
@@ -16,7 +16,7 @@ export default function Signup() {
         body: JSON.stringify(formData),
       });
 
-      const data = await res.json();
+            const data = await res.json();
 
       if (res.ok) {
         setMessage("Signup successful! Redirecting to login...");

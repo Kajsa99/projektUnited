@@ -6,10 +6,15 @@ export function Navbar() {
     const navigate = useNavigate();
 
     useEffect(() => {
-        const username = localStorage.getItem("username");
-        const userId = localStorage.getItem("userId");
-        if (username) setUser({ username, id: userId });
-        else setUser(null);
+        const refresh = () => {
+            const username = localStorage.getItem("username");
+            const userId = localStorage.getItem("userId");
+            if (username) setUser({ username, id: userId });
+            else setUser(null);
+        };
+        refresh();
+        window.addEventListener("authChanged", refresh);
+        return () => window.removeEventListener("authChanged", refresh);
     }, []);
 
     function Logout(e) {
@@ -17,6 +22,11 @@ export function Navbar() {
         localStorage.removeItem("token");
         localStorage.removeItem("username");
         setUser(null);
+        navigate("/login");
+    }
+
+    function Login(e) {
+        e.preventDefault();
         navigate("/login");
     }
 
@@ -61,12 +71,12 @@ export function Navbar() {
                         </button>
                     </>
                 ) : (
-                    <a
-                        to="/login"
+                    <button
+                        onClick={Login}
                         className="bg-rose-400 text-rose-900 text-md p-3 rounded-2xl hover:text-white"
                     >
                         Login
-                    </a>
+                    </button>
                 )}
             </div>
         </nav>
