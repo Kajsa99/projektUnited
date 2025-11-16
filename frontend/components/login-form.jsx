@@ -2,87 +2,84 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 
 export default function LoginForm({ onLogin }) {
-    const [formData, setFormData] = useState({ username: "", password: "" });
-    const [error, setError] = useState("");
+  const [formData, setFormData] = useState({ username: "", password: "" });
+  const [error, setError] = useState("");
 
-    const handleChange = (e) => {
-        setFormData({ ...formData, [e.target.name]: e.target.value });
-    };
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        setError("");
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setError("");
 
-        try {
-            const res = await fetch(`/api/users/login`, {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(formData),
-            });
+    try {
+      const res = await fetch("http://4.210.254.154:3000/api/users/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
 
-            const data = await res.json().catch(() => ({}));
-            console.log("login response", res.status, data);
+      const data = await res.json().catch(() => ({}));
+      console.log("login response", res.status, data);
 
-            if (!res.ok) {
-                setError(data.error || "Login failed");
-                return;
-            }
-            const user =
-                data.user ||
-                (data.id || data.userId
-                    ? { id: data.id || data.userId, username: data.username }
-                    : null);
+      if (!res.ok) {
+        setError(data.error || "Login failed");
+        return;
+      }
+      const user =
+        data.user ||
+        (data.id || data.userId
+          ? { id: data.id || data.userId, username: data.username }
+          : null);
 
-            if (res.ok) {
-                localStorage.setItem("token", data.token); // save token in local storaeg
-                localStorage.setItem("userId", String(user.id)); // store id for routing/visibility
-                localStorage.setItem("username", user.username);
-                onLogin({ token: data.token, user }); // notify parent component
-            } else {
-                setError(data.error || "Login failed");
-            }
-        } catch (err) {
-            console.error(err);
-            setError("Something went wrong");
-        }
-    };
+      if (res.ok) {
+        localStorage.setItem("token", data.token); // save token in local storaeg
+        localStorage.setItem("userId", String(user.id)); // store id for routing/visibility
+        localStorage.setItem("username", user.username);
+        onLogin({ token: data.token, user }); // notify parent component
+      } else {
+        setError(data.error || "Login failed");
+      }
+    } catch (err) {
+      console.error(err);
+      setError("Something went wrong");
+    }
+  };
 
-    return (
-        <form
-            onSubmit={handleSubmit}
-            className="flex flex-col max-w-sm mx-auto gap-4 p-10 bg-lime-200 text-white rounded-lg"
-        >
-            <input
-                type="text"
-                name="username"
-                placeholder="Username"
-                value={formData.username}
-                onChange={handleChange}
-                className="p-2 rounded bg-stone-700 text-white"
-                required
-            />
-            <input
-                type="password"
-                name="password"
-                placeholder="Password"
-                value={formData.password}
-                onChange={handleChange}
-                className="p-2 rounded bg-stone-700 text-white"
-                required
-            />
-            <button
-                type="submit"
-                className="bg-rose-400 text-rose-900 rounded-xl p-2 mt-4"
-            >
-                Login
-            </button>
-            {error && <p className="text-red-400 mt-2 text-center">{error}</p>}
-            <Link
-                to="/signup"
-                className="text-rose-400 underline text-center mt-4"
-            >
-                No account? Sign up here.
-            </Link>
-        </form>
-    );
+  return (
+    <form
+      onSubmit={handleSubmit}
+      className="flex flex-col max-w-sm mx-auto gap-4 p-10 bg-lime-200 text-white rounded-lg"
+    >
+      <input
+        type="text"
+        name="username"
+        placeholder="Username"
+        value={formData.username}
+        onChange={handleChange}
+        className="p-2 rounded bg-stone-700 text-white"
+        required
+      />
+      <input
+        type="password"
+        name="password"
+        placeholder="Password"
+        value={formData.password}
+        onChange={handleChange}
+        className="p-2 rounded bg-stone-700 text-white"
+        required
+      />
+      <button
+        type="submit"
+        className="bg-rose-400 text-rose-900 rounded-xl p-2 mt-4"
+      >
+        Login
+      </button>
+      {error && <p className="text-red-400 mt-2 text-center">{error}</p>}
+      <Link to="/signup" className="text-rose-400 underline text-center mt-4">
+        No account? Sign up here.
+      </Link>
+    </form>
+  );
 }
