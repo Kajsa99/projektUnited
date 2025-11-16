@@ -23,17 +23,14 @@ export default function UpdateUserForm({ user, onUpdate }) {
                 token: !!token,
             });
 
-            const res = await fetch(
-                `http://localhost:3000/api/users/${user.id}`,
-                {
-                    method: "PUT",
-                    headers: {
-                        "Content-Type": "application/json",
-                        Authorization: `Bearer ${token}`,
-                    },
-                    body: JSON.stringify(formData),
-                }
-            );
+            const res = await fetch(`/api/users/${user.id}`, {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${token}`,
+                },
+                body: JSON.stringify(formData),
+            });
             const data = await res.json().catch(() => ({}));
             if (!res.ok) {
                 setError(data.error || "Update failed");
